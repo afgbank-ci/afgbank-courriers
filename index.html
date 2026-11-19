@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0a192f">
+    <meta name="description" content="Préparez un courrier bancaire AFG Bank Côte d'Ivoire et téléchargez-le en PDF.">
+    <title>Portail Courriers Clients | AFG Bank Côte d'Ivoire</title>
+    <script defer src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body class="antialiased">
+    <section class="welcome-screen welcome-animate" id="welcome-screen" aria-labelledby="welcome-title">
+      <div class="welcome-content">
+        <div class="welcome-logo" id="welcome-logo">
+          <img src="assets/afg-bank-logo.png" alt="AFG Bank Côte d'Ivoire">
+          <span class="welcome-logo-fallback" aria-hidden="true" hidden>AFG <b>BANK</b><small>CÔTE D'IVOIRE</small></span>
+        </div>
+        <p class="welcome-kicker">AFG BANK CÔTE D'IVOIRE</p>
+        <h1 class="welcome-title" id="welcome-title">Bienvenue sur votre espace courriers clients</h1>
+        <p class="welcome-copy">Générez gratuitement vos demandes et réclamations bancaires officielles en moins de 2 minutes, prêtes à imprimer et signer.</p>
+        <button type="button" class="welcome-cta" id="welcome-cta">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+            <path d="M4 20h4l11-11a2.12 2.12 0 0 0-3-3L5 17l-1 3Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="m14.5 6.5 3 3M12 20h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          </svg>
+          <span>Rédiger mon courrier</span>
+          <span class="welcome-cta-arrow" aria-hidden="true">→</span>
+        </button>
+        <p class="welcome-privacy"><span aria-hidden="true">▣</span> Vos informations restent sur votre appareil.</p>
+      </div>
+      <span class="welcome-decoration welcome-decoration-top" aria-hidden="true"></span>
+      <span class="welcome-decoration welcome-decoration-bottom" aria-hidden="true"></span>
+    </section>
+
+    <div id="app-shell" hidden inert aria-hidden="true">
+      <header class="site-header">
+        <a class="brand" href="#" aria-label="AFG Bank Côte d'Ivoire, accueil" id="brand-home">
+          <img src="assets/afg-bank-logo.png" alt="AFG Bank">
+          <span class="brand-divider" aria-hidden="true"></span>
+          <span class="brand-name">AFG Bank<br><strong>Côte d'Ivoire</strong></span>
+        </a>
+        <span class="header-label">PORTAIL COURRIERS CLIENTS</span>
+      </header>
+
+      <main>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow"><span aria-hidden="true"></span> VOTRE ESPACE CLIENT</p>
+        <h1 id="page-title">Préparez votre courrier bancaire</h1>
+        <p>Choisissez le motif de votre demande. Votre courrier officiel sera rédigé automatiquement et prêt à télécharger.</p>
+      </section>
+
+      <nav class="stepper" aria-label="Étapes de création du courrier">
+        <div class="step is-active" data-step-indicator="1"><span>1</span><strong>Motif</strong></div>
+        <i aria-hidden="true"></i>
+        <div class="step" data-step-indicator="2"><span>2</span><strong>Informations</strong></div>
+        <i aria-hidden="true"></i>
+        <div class="step" data-step-indicator="3"><span>3</span><strong>Aperçu PDF</strong></div>
+      </nav>
+
+      <section class="panel selection-panel" id="selection-panel" aria-labelledby="selection-title">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">ÉTAPE 1 SUR 3</p>
+            <h2 id="selection-title">Quel est le motif de votre courrier ?</h2>
+            <p class="panel-description">Sélectionnez la demande qui correspond à votre situation.</p>
+          </div>
+        </div>
+        <div class="reason-grid" id="reason-list" role="radiogroup" aria-labelledby="selection-title"></div>
+        <div class="panel-actions">
+          <span class="privacy-note"><span aria-hidden="true">▣</span> Vos informations restent sur votre appareil.</span>
+          <button type="button" class="button button-primary" id="continue-button" disabled>
+            Continuer <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="panel form-panel" id="form-panel" aria-labelledby="form-title" hidden>
+        <div class="panel-heading">
+          <div>
+            <button type="button" class="text-button" id="back-to-reasons"><span aria-hidden="true">←</span> Changer de motif</button>
+            <p class="section-kicker">ÉTAPE 2 SUR 3</p>
+            <h2 id="form-title">Vos informations</h2>
+            <p class="panel-description" id="selected-reason"></p>
+          </div>
+        </div>
+        <form id="letter-form" novalidate>
+          <fieldset>
+            <legend>Vos coordonnées</legend>
+            <div class="field-grid">
+              <label class="field">
+                <span>Nom <b>*</b></span>
+                <input name="nom" autocomplete="family-name" required>
+              </label>
+              <label class="field">
+                <span>Prénom(s) <b>*</b></span>
+                <input name="prenoms" autocomplete="given-name" required>
+              </label>
+              <label class="field">
+                <span>Numéro de compte bancaire <b>*</b></span>
+                <input name="compte" autocomplete="off" required>
+                <small id="account-number-hint" hidden>Pour la clôture des deux comptes, ce numéro correspond au Compte Courant.</small>
+              </label>
+              <label class="field">
+                <span>Adresse e-mail <b>*</b></span>
+                <input name="email" type="email" autocomplete="email" required>
+              </label>
+              <label class="field">
+                <span>Numéro de téléphone <b>*</b></span>
+                <input name="telephone" type="tel" autocomplete="tel" required>
+              </label>
+              <label class="field">
+                <span>Agence AFG Bank <small>Facultatif</small></span>
+                <input name="agence" autocomplete="off">
+              </label>
+              <div class="field field-wide card-number-field">
+                <span>Numéro de carte bancaire <small id="card-requirement-label">Facultatif</small></span>
+                <div class="card-number-fields">
+                  <label class="field">
+                    <span>4 premiers chiffres <b id="card-first-required" hidden>*</b></span>
+                    <input name="cardFirst" type="text" inputmode="numeric" autocomplete="off" maxlength="4" pattern="[0-9]{4}" aria-label="4 premiers chiffres de la carte">
+                  </label>
+                  <label class="field">
+                    <span>4 derniers chiffres <b id="card-last-required" hidden>*</b></span>
+                    <input name="cardLast" type="text" inputmode="numeric" autocomplete="off" maxlength="4" pattern="[0-9]{4}" aria-label="4 derniers chiffres de la carte">
+                  </label>
+                </div>
+                <small class="card-hint">Numéro présenté dans le courrier sous la forme 1234 **** **** 5678</small>
+              </div>
+              <label class="field">
+                <span>Date du courrier <b>*</b></span>
+                <input name="date" type="date" required>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="specific-fields" id="specific-fields">
+            <legend id="specific-legend">Détails de votre demande</legend>
+            <div class="field-grid" id="specific-field-grid"></div>
+          </fieldset>
+
+          <p class="form-error" id="form-error" role="alert" hidden></p>
+          <div class="panel-actions form-actions">
+            <button type="button" class="button button-secondary" id="form-back-button">← Retour</button>
+            <button type="submit" class="button button-primary">Générer mon courrier <span aria-hidden="true">→</span></button>
+          </div>
+          <p class="privacy-note form-privacy"><span aria-hidden="true">▣</span> Aucune donnée n'est envoyée à un serveur.</p>
+        </form>
+      </section>
+
+      <section class="panel preview-panel" id="preview-panel" aria-labelledby="preview-title" hidden>
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">ÉTAPE 3 SUR 3</p>
+            <h2 id="preview-title" tabindex="-1">Vérifiez votre courrier</h2>
+            <p class="panel-description">Relisez votre document avant de le télécharger.</p>
+          </div>
+        </div>
+        <div class="document-wrap">
+          <article id="letter-document" class="letter-document" aria-label="Aperçu du courrier A4">
+            <header class="document-header">
+              <div class="document-brand">
+                <img src="assets/afg-bank-logo.png" alt="AFG Bank">
+                <div><strong>AFG Bank Côte d'Ivoire</strong></div>
+              </div>
+              <div class="document-reference">COURRIER CLIENT</div>
+            </header>
+            <div class="document-rule"></div>
+            <div class="address-grid">
+              <div class="sender-block">
+                <strong id="document-name"></strong>
+                <span id="document-account"></span>
+                <span id="document-second-account" hidden></span>
+                <span id="document-phone"></span>
+                <span id="document-email"></span>
+                <span id="document-sender-branch" hidden></span>
+                <span id="document-card" hidden></span>
+              </div>
+              <p class="document-date" id="document-date"></p>
+            </div>
+            <div class="recipient-block">
+              <strong>À l'attention de la Direction d'Agence</strong>
+              <span>AFG Bank Côte d'Ivoire</span>
+            </div>
+            <p class="document-subject"><strong>Objet : </strong><span id="document-subject"></span></p>
+            <p class="document-salutation">Madame, Monsieur,</p>
+            <div class="document-body" id="document-body"></div>
+            <p class="document-closing">Dans l'attente de votre retour, je vous prie d'agréer, Madame, Monsieur, l'expression de ma considération distinguée.</p>
+            <div class="signature-row">
+              <div class="bank-discharge"><strong>Cachet et décharge de la banque</strong></div>
+              <div class="client-signature"><strong>Signature du client</strong><span id="document-signature"></span></div>
+            </div>
+          </article>
+        </div>
+        <div class="panel-actions preview-actions">
+          <button type="button" class="button button-secondary" id="edit-button"><span aria-hidden="true">←</span> Modifier mes informations</button>
+          <button type="button" class="button button-primary" id="download-button"><span aria-hidden="true">↓</span> Télécharger en PDF</button>
+        </div>
+        <p class="download-status" id="download-status" role="status" aria-live="polite"></p>
+        <p class="preview-note">Le document est préparé sur cet appareil et n'est pas transmis automatiquement à la banque.</p>
+      </section>
+      </main>
+
+      <footer class="site-footer">
+        <span>AFG Bank Côte d'Ivoire - Portail Courriers Clients</span>
+        <span>Service gratuit · Vos données restent confidentielles</span>
+      </footer>
+    </div>
+  </body>
+</html>
