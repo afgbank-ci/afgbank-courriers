@@ -589,6 +589,14 @@ document.querySelector("#brand-home").addEventListener("click", (event) => {
   returnToWelcome();
 });
 
+const qrModal = document.querySelector("#qr-modal");
+const showQrButton = document.querySelector("#show-qr-button");
+showQrButton.addEventListener("click", () => qrModal.showModal());
+document.querySelector("#close-qr-button").addEventListener("click", () => qrModal.close());
+qrModal.addEventListener("click", (event) => {
+  if (event.target === qrModal) qrModal.close();
+});
+
 document.querySelector("#continue-button").addEventListener("click", openForm);
 document.querySelector("#back-to-reasons").addEventListener("click", () => {
   saveSpecificValues();

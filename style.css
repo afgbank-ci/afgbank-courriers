@@ -265,6 +265,23 @@ h2 { margin: 0; color: var(--navy); font-size: 19px; line-height: 1.35; letter-s
 .download-status { min-height: 18px; margin: 0 26px 8px; color: #425c4b; font-size: 11px; }
 .preview-note { margin: 0 26px 20px; color: #798596; font-size: 10px; }
 .site-footer { display: flex; justify-content: space-between; gap: 12px; padding: 17px max(24px, calc((100% - 1120px) / 2)); border-top: 1px solid #e2e6ec; background: #fff; color: #768294; font-size: 10px; }
+.footer-tools { display: flex; align-items: center; gap: 18px; }
+.footer-qr-button { padding: 0; border: 0; background: transparent; color: var(--burgundy); font-size: inherit; font-weight: 650; text-decoration: underline; text-underline-offset: 3px; }
+.footer-qr-button:hover { color: var(--red); }
+.footer-qr-button:focus-visible, .qr-modal-close:focus-visible { outline: 3px solid rgb(167 25 48 / 23%); outline-offset: 3px; }
+.qr-modal { width: min(440px, calc(100% - 32px)); max-width: none; max-height: min(92vh, 760px); overflow: auto; padding: 26px; border: 1px solid #e2e7ed; border-radius: 12px; background: #fff; color: var(--ink); box-shadow: 0 24px 70px rgb(10 25 47 / 25%); text-align: center; }
+.qr-modal::backdrop { background: rgb(10 25 47 / 58%); backdrop-filter: blur(3px); }
+.qr-modal-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; text-align: left; }
+.qr-modal-header .section-kicker { margin-bottom: 5px; }
+.qr-modal-header h2 { font-size: 20px; }
+.qr-modal-close { width: 34px; height: 34px; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 50%; background: #fff; color: #59677a; font-size: 23px; line-height: 1; }
+.qr-modal-close:hover { background: #f4f6f9; color: var(--burgundy); }
+.qr-modal-description { margin: 15px 0 16px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.qr-modal-image { display: block; width: min(100%, 300px); height: auto; margin: 0 auto 12px; border: 1px solid #f0f1f3; border-radius: 6px; }
+.qr-modal-url { display: inline-block; max-width: 100%; overflow-wrap: anywhere; color: var(--navy); font-size: 11px; text-decoration: none; }
+.qr-modal-url:hover { text-decoration: underline; }
+.qr-modal-actions { display: flex; justify-content: center; gap: 10px; margin-top: 18px; }
+.qr-modal-actions .button { text-decoration: none; }
 
 @media (max-width: 640px) {
   .welcome-screen { padding: 28px 22px; }
@@ -323,6 +340,9 @@ h2 { margin: 0; color: var(--navy); font-size: 19px; line-height: 1.35; letter-s
   .preview-actions .button { width: 100%; }
   .download-status, .preview-note { margin-right: 14px; margin-left: 14px; }
   .site-footer { align-items: center; flex-direction: column; padding: 15px 18px; text-align: center; }
+  .footer-tools { flex-direction: column; gap: 10px; }
+  .qr-modal { padding: 20px 16px; }
+  .qr-modal-actions { flex-direction: column; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -205,8 +205,28 @@
 
       <footer class="site-footer">
         <span>AFG Bank Côte d'Ivoire - Portail Courriers Clients</span>
-        <span>Service gratuit · Vos données restent confidentielles</span>
+        <div class="footer-tools">
+          <span>Service gratuit · Vos données restent confidentielles</span>
+          <button type="button" class="footer-qr-button" id="show-qr-button" aria-haspopup="dialog" aria-controls="qr-modal">Afficher / Télécharger le QR Code</button>
+        </div>
       </footer>
+
+      <dialog class="qr-modal" id="qr-modal" aria-labelledby="qr-modal-title">
+        <div class="qr-modal-header">
+          <div>
+            <p class="section-kicker">AFG BANK CÔTE D'IVOIRE</p>
+            <h2 id="qr-modal-title">Accéder au portail</h2>
+          </div>
+          <button type="button" class="qr-modal-close" id="close-qr-button" aria-label="Fermer la fenêtre">×</button>
+        </div>
+        <p class="qr-modal-description">Scannez ce code avec l’appareil photo de votre téléphone pour ouvrir le portail courriers clients.</p>
+        <img class="qr-modal-image" src="qrcode-afgbank.png" alt="QR Code vers le portail AFG Bank Côte d'Ivoire">
+        <a class="qr-modal-url" href="https://drahjunior20-del.github.io/afgbank-courriers/" target="_blank" rel="noopener noreferrer">drahjunior20-del.github.io/afgbank-courriers</a>
+        <div class="qr-modal-actions">
+          <a class="button button-primary" href="qrcode-afgbank.png" download="qrcode-afgbank.png">Télécharger PNG</a>
+          <a class="button button-secondary" href="qrcode-afgbank.svg" download="qrcode-afgbank.svg">Télécharger SVG</a>
+        </div>
+      </dialog>
     </div>
   </body>
 </html>

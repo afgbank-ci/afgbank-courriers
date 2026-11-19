@@ -8,6 +8,8 @@ Ouvrez `index.html` dans un navigateur récent, ou servez le dossier avec l'exte
 
 Le parcours propose six motifs de courrier : réclamation pour débit à tort, résiliation BP Capital / NSIA, demande relative à une carte magnétique, clôture de compte, opposition sur chèque et mise à jour des informations client. Pour une clôture, le client peut sélectionner un compte ou les deux ; le second numéro de compte est alors requis. Le mode de récupération du solde peut être le retrait au guichet ou un virement bancaire, avec un champ facultatif pour le compte bénéficiaire. Les références carte sont saisies avec leurs quatre premiers et derniers chiffres, puis masquées dans le courrier. Les champs requis varient selon le motif et les choix du client.
 
+Le QR code vers le site est disponible à la racine en formats PNG haute résolution et SVG imprimable. Le pied de page permet de l’afficher dans une fenêtre et de télécharger l’un ou l’autre format.
+
 ## Fichiers
 
 - `index.html` : structure des trois étapes et aperçu du courrier.
